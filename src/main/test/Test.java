@@ -1,3 +1,4 @@
+import com.xml.model.Count;
 import com.xml.model.Person;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -22,7 +23,21 @@ public class Test {
 //        System.out.println(p);
 //        System.out.println(c);
 
-        Person p3 = app.getBean(Person.class);
-        System.out.println(p3);
+        Person p = (Person)app.getBean("person");
+        System.out.println(p);
     }
+
+
+    @org.junit.Test
+    public void testAop(){
+
+        ApplicationContext app = new ClassPathXmlApplicationContext("classpath:application-aop.xml");
+        Count p3 = app.getBean(Count.class);
+        System.out.println(p3.getClass().getName());
+        System.out.println(p3.add(1,3));
+        System.out.println(p3.div(1,0));
+        System.out.println(p3.mul(1,3));
+        System.out.println(p3.sub(1,3));
+    }
+
 }

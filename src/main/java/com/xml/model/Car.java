@@ -16,6 +16,14 @@ public class Car {
 
     private Double price;
 
+    private void carInit(){
+        System.out.println("car init...........");
+    }
+
+    private void carDestory(){
+        System.out.println("car destory...........");
+    }
+
 
     public Car() {
     }
@@ -24,6 +32,8 @@ public class Car {
         this.speed = speed;
         this.bank = bank;
         this.price = price;
+
+        System.out.println("Cat constuct.................");
     }
 
     public Double getSpeed() {

@@ -19,6 +19,15 @@ public class Person {
     private Car car;
 
 
+    private void personInit(){
+        System.out.println("person init...........");
+    }
+
+    private void personDestory(){
+        System.out.println("person destory...........");
+    }
+
+
     public Person() {
         System.out.println("person construct init.........");
     }
@@ -28,7 +37,7 @@ public class Person {
         return car;
     }
 
-    public void setCar(Car car) {
+    public void setCar2(Car car) {
         this.car = car;
     }
 

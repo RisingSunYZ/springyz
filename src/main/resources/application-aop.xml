@@ -13,30 +13,9 @@
        default-lazy-init="true">
 
 
-    <context:property-placeholder location="classpath:dev.properties"></context:property-placeholder>
-    <bean id="person" class="com.xml.model.Person" scope="prototype" init-method="personInit" destroy-method="personDestory" autowire="byName">
-        <property name="address" value="测试"></property>
-        <property name="age" value="12"></property>
-        <property name="name" value="${name}"></property>
-        <!--<property name="car" ref="car"></property>-->
-    </bean>
+    <context:component-scan base-package="com.xml"></context:component-scan>
 
+    <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
 
-    <bean id="person2" class="com.xml.model.Person" scope="singleton" p:address="测试2" p:car2-ref="car" p:name="yz2" p:age="26">
-    </bean>
-
-    <bean id="car2" class="com.xml.model.Car" init-method="carInit" destroy-method="carDestory">
-        <property name="speed"><null/></property>
-        <property name="bank"><value><![CDATA[<123>]]></value></property>
-    </bean>
-
-
-    <bean id="car" class="com.xml.model.Car" init-method="carInit" destroy-method="carDestory">
-        <constructor-arg index="0" ><value><![CDATA[123]]></value></constructor-arg>
-        <constructor-arg type="java.lang.String"><null/></constructor-arg>
-        <constructor-arg value="10000"></constructor-arg>
-    </bean>
-
-    <bean class="com.xml.BeanProcesser.PersonBeanProcesser"></bean>
 
 </beans>
