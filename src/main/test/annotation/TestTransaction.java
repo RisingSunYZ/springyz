@@ -22,7 +22,9 @@ public class TestTransaction {
     public void test(){
         TestSdTransactional bean = app.getBean(TestSdTransactional.class);
 //        bean.add();
-        bean.addAspect();
+        bean.addSpring();
+//        bean.addAspect();
+//        bean.addAnnotation();
     }
 
 }

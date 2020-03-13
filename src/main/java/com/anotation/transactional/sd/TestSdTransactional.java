@@ -1,9 +1,12 @@
 package com.anotation.transactional.sd;
 
+import com.anotation.transactional.annotation.MyTransaction;
 import com.anotation.transactional.util.MyTransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @Description:
@@ -21,6 +24,16 @@ public class TestSdTransactional {
     @Autowired
     private  MyTransactionUtil myTransactionUtil;
 
+    @Autowired
+    private LogService logService;
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public  void addSpring(){
+        logService.logAdd();
+        jdbcTemplate.execute("INSERT INTO `test_ysportal`.`tbl_test`(`id`, `name`) VALUES ('1', '1');\n");
+        int a = 1/0;
+    }
+
 
 //    @Transactional
     public  void add(){
@@ -36,8 +49,15 @@ public class TestSdTransactional {
 
     }
 
+    @MyTransaction("llalala")
     public  void addAspect(){
             jdbcTemplate.execute("INSERT INTO `test_ysportal`.`tbl_test`(`id`, `name`) VALUES ('1', '1');\n");
+//            int a =  1/0;
+    }
+
+    @MyTransaction
+    public  void addAnnotation(){
+        jdbcTemplate.execute("INSERT INTO `test_ysportal`.`tbl_test`(`id`, `name`) VALUES ('1', '1');\n");
 //            int a =  1/0;
     }
 }
